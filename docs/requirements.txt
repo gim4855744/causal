@@ -1,3 +1,10 @@
 sphinx
 sphinx_rtd_theme
 furo
+
+numpy
+scikit-learn
+tqdm
+pandas
+castle
+torch
