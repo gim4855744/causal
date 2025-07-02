@@ -12,7 +12,6 @@ jobs:
       with:
         persist-credentials: false
     - name: Build HTML
-        pip install sphinx_rtd_theme
       uses: ammaraskar/sphinx-action@master
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
