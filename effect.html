@@ -45,7 +45,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="synthetic_dataset.html">synthetic_dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discovery.html">discovery</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">effect</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">effect</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#causal.effect.ACE"><code class="docutils literal notranslate"><span class="pre">ACE</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#causal.effect.ACE.forward"><code class="docutils literal notranslate"><span class="pre">ACE.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.effect.ACE.predict"><code class="docutils literal notranslate"><span class="pre">ACE.predict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#causal.effect.RNNACE"><code class="docutils literal notranslate"><span class="pre">RNNACE</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#causal.effect.RNNACE.forward"><code class="docutils literal notranslate"><span class="pre">RNNACE.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.effect.RNNACE.predict"><code class="docutils literal notranslate"><span class="pre">RNNACE.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -72,8 +84,110 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="effect">
-<h1>effect<a class="headerlink" href="#effect" title="Link to this heading"></a></h1>
+  <section id="module-causal.effect">
+<span id="effect"></span><h1>effect<a class="headerlink" href="#module-causal.effect" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="causal.effect.ACE">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">causal.effect.</span></span><span class="sig-name descname"><span class="pre">ACE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_ace.html#ACE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.ACE" title="Link to this definition"></a></dt>
+<dd><p>Neural Network Attributions: A Causal Perspective
+(<a class="reference external" href="https://proceedings.mlr.press/v97/chattopadhyay19a">https://proceedings.mlr.press/v97/chattopadhyay19a</a>)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.effect.ACE.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_ace.html#ACE.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.ACE.forward" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Source(training) data of shape (n_samples, n_features)</p></li>
+<li><p><strong>feature_idx</strong> (<em>int</em>) – Index of the feature to intervene on.</p></li>
+<li><p><strong>output_idx</strong> (<em>int</em>) – Index of the class to intervene on.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Intervention value (do(alpha)).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>causal_effect</strong> – Estimated causal effect.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.effect.ACE.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_ace.html#ACE.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.ACE.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict causal effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Source(training) data of shape (n_samples, n_features)</p></li>
+<li><p><strong>feature_idx</strong> (<em>int</em>) – Index of the feature want to intervene in.</p></li>
+<li><p><strong>output_idx</strong> (<em>int</em>) – Index of the class want to intervene in.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Intervention value (do(alpha)).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>causal_effect</strong> – Estimated causal effect.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="causal.effect.RNNACE">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">causal.effect.</span></span><span class="sig-name descname"><span class="pre">RNNACE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_rnnace.html#RNNACE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.RNNACE" title="Link to this definition"></a></dt>
+<dd><p>Neural Network Attributions: A Causal Perspective
+(<a class="reference external" href="https://proceedings.mlr.press/v97/chattopadhyay19a">https://proceedings.mlr.press/v97/chattopadhyay19a</a>)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.effect.RNNACE.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_rnnace.html#RNNACE.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.RNNACE.forward" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Source(training) data of shape (n_samples, n_feats)</p></li>
+<li><p><strong>t</strong> (<em>int</em>) – Index of the time step to intervene on.</p></li>
+<li><p><strong>feature_idx</strong> (<em>int</em>) – Index of the feature to intervene on.</p></li>
+<li><p><strong>output_idx</strong> (<em>int</em>) – Index of the class to intervene on.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Intervention value (do(alpha)).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>causal_effect</strong> – Estimated causal effect.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.effect.RNNACE.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/effect/_rnnace.html#RNNACE.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.effect.RNNACE.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict causal effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Source(training) data of shape (n_samples, n_feats)</p></li>
+<li><p><strong>t</strong> (<em>int</em>) – Index of the time step to intervene on.</p></li>
+<li><p><strong>feature_idx</strong> (<em>int</em>) – Index of the feature to intervene on.</p></li>
+<li><p><strong>output_idx</strong> (<em>int</em>) – Index of the class to intervene on.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Intervention value (do(alpha)).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>causal_effect</strong> – Estimated causal effect.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

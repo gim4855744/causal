@@ -45,7 +45,27 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="synthetic_dataset.html">synthetic_dataset</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">discovery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">discovery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#causal.discovery.ACD"><code class="docutils literal notranslate"><span class="pre">ACD</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACD.fit"><code class="docutils literal notranslate"><span class="pre">ACD.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACD.forward"><code class="docutils literal notranslate"><span class="pre">ACD.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACD.predict"><code class="docutils literal notranslate"><span class="pre">ACD.predict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#causal.discovery.ACDSS"><code class="docutils literal notranslate"><span class="pre">ACDSS</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACDSS.fit"><code class="docutils literal notranslate"><span class="pre">ACDSS.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACDSS.forward"><code class="docutils literal notranslate"><span class="pre">ACDSS.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.ACDSS.predict"><code class="docutils literal notranslate"><span class="pre">ACDSS.predict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#causal.discovery.SGCSL"><code class="docutils literal notranslate"><span class="pre">SGCSL</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.SGCSL.fit"><code class="docutils literal notranslate"><span class="pre">SGCSL.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.SGCSL.forward"><code class="docutils literal notranslate"><span class="pre">SGCSL.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#causal.discovery.SGCSL.predict"><code class="docutils literal notranslate"><span class="pre">SGCSL.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="effect.html">effect</a></li>
 </ul>
 
@@ -73,8 +93,193 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="discovery">
-<h1>discovery<a class="headerlink" href="#discovery" title="Link to this heading"></a></h1>
+  <section id="module-causal.discovery">
+<span id="discovery"></span><h1>discovery<a class="headerlink" href="#module-causal.discovery" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="causal.discovery.ACD">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">causal.discovery.</span></span><span class="sig-name descname"><span class="pre">ACD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_feats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_hidden</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_edge_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acd.html#ACD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACD" title="Link to this definition"></a></dt>
+<dd><p>Amortized Causal Discovery: Learning to Infer Causal Graphs from Time-Series Data.
+(<a class="reference external" href="https://proceedings.mlr.press/v177/lowe22a.html">https://proceedings.mlr.press/v177/lowe22a.html</a>)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACD.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ckptpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./checkpoints/ACD.ckpt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acd.html#ACD.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACD.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the model to the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input np.ndarray of shape (n_samples, n_series, n_steps, n_feats).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size for training.</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – Learning rate for the optimizer.</p></li>
+<li><p><strong>max_epochs</strong> (<em>int</em>) – Number of epochs to train.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – How many subprocesses to use for data.</p></li>
+<li><p><strong>ckptpath</strong> (<em>str</em>) – Path to save the model checkpoint.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACD.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acd.html#ACD.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACD.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – Input tensor of shape (batch_size, n_series, n_steps, n_feats).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>edge_probs</strong> (<em>torch.Tensor</em>) – Predicted edge probabilities of shape (batch_size, n_series, n_series, n_edge_types).</p></li>
+<li><p><strong>pred</strong> (<em>torch.Tensor</em>) – Reconstructed time series of shape (batch_size, n_series, n_steps, n_feats).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACD.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acd.html#ACD.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACD.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the edge probabilities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Input np.ndarray of shape (n_samples, n_series, n_steps, n_feats).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size for training.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – How many subprocesses to use for data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>transformed_edge_probs</strong> – Predicted edge probabilities of shape (n_samples, n_series, n_series, n_edge_types).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="causal.discovery.ACDSS">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">causal.discovery.</span></span><span class="sig-name descname"><span class="pre">ACDSS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_hidden</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_edge_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acdss.html#ACDSS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACDSS" title="Link to this definition"></a></dt>
+<dd><p>ACDSS (ACD for CDSS) is a simple tweak of ACD to handle dynamic time series.
+It first encodes the time series into a global representation using a recurrent neural network (RNN).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACDSS.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ckptpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./checkpoints/ACDSS.ckpt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acdss.html#ACDSS.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACDSS.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the model to the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>pd.DataFrame</em>) – DataFrame of shape (n_samples * n_steps, n_series). Each subject is identified by a unique ID and ordered chronologically.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size for training.</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – Learning rate for the optimizer.</p></li>
+<li><p><strong>max_epochs</strong> (<em>int</em>) – Number of epochs to train.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – How many subprocesses to use for data.</p></li>
+<li><p><strong>ckptpath</strong> (<em>str</em>) – Path to save the model checkpoint.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACDSS.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_steps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acdss.html#ACDSS.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACDSS.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>torch.Tensor</em>) – Input tensor of shape (batch_size, n_series, n_steps, n_feats).</p></li>
+<li><p><strong>n_steps</strong> (<em>torch.Tensor</em>) – Tensor of shape (batch_size,) containing the number of time steps for each sample.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>edge_probs</strong> (<em>torch.Tensor</em>) – Predicted edge probabilities of shape (batch_size, n_series, n_series, n_edge_types).</p></li>
+<li><p><strong>pred</strong> (<em>torch.Tensor</em>) – Reconstructed time series of shape (batch_size, n_series, n_steps, n_feats).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.ACDSS.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_acdss.html#ACDSS.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.ACDSS.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the edge probabilities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>pd.DataFrame</em>) – pandas DataFrame of shape (n_samples * n_steps, n_series).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Batch size for prediction.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – How many subprocesses to use for data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>transformed_edge_probs</strong> – Predicted edge probabilities of shape (n_samples, n_series, n_series, n_edge_types).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="causal.discovery.SGCSL">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">causal.discovery.</span></span><span class="sig-name descname"><span class="pre">SGCSL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_sgcsl.html#SGCSL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.SGCSL" title="Link to this definition"></a></dt>
+<dd><p>A Simple yet Scalable Granger Causal Structural Learning Approach for Topological Event Sequences.
+(<a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/b00efe6d4dbf119e2d0d44186cdfe7c8-Abstract-Conference.html">https://proceedings.neurips.cc/paper_files/paper/2024/hash/b00efe6d4dbf119e2d0d44186cdfe7c8-Abstract-Conference.html</a>)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.SGCSL.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ckptpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./checkpoints/SGCSL.ckpt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_sgcsl.html#SGCSL.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.SGCSL.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the model to the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>pd.DataFrame</em>) – Observed events.</p></li>
+<li><p><strong>device_edges</strong> (<em>np.ndarray</em>) – Device adjacency matrix.</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – Learning rate for the optimizer.</p></li>
+<li><p><strong>max_epochs</strong> (<em>int</em>) – Number of epochs to train.</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – How many subprocesses to use for data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.SGCSL.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_sgcsl.html#SGCSL.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.SGCSL.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>discovered_event_edges</strong> (<em>torch.Tensor</em>) – Event edges.</p></li>
+<li><p><strong>mu</strong> (<em>torch.Tensor</em>) – Poisson strength of each event.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="causal.discovery.SGCSL.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/discovery/_sgcsl.html#SGCSL.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.discovery.SGCSL.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the event edges and Poisson strength of each event.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>discovered_event_edges</strong> (<em>torch.Tensor</em>) – Event edges.</p></li>
+<li><p><strong>mu</strong> (<em>torch.Tensor</em>) – Poisson strength of each event.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
