@@ -44,7 +44,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">synthetic_dataset</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">synthetic_dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#causal.synthetic_dataset.generate_kuramoto"><code class="docutils literal notranslate"><span class="pre">generate_kuramoto()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#causal.synthetic_dataset.generate_springs"><code class="docutils literal notranslate"><span class="pre">generate_springs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#causal.synthetic_dataset.generate_thp"><code class="docutils literal notranslate"><span class="pre">generate_thp()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="discovery.html">discovery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="effect.html">effect</a></li>
 </ul>
@@ -73,8 +78,82 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="synthetic-dataset">
-<h1>synthetic_dataset<a class="headerlink" href="#synthetic-dataset" title="Link to this heading"></a></h1>
+  <section id="module-causal.synthetic_dataset">
+<span id="synthetic-dataset"></span><h1>synthetic_dataset<a class="headerlink" href="#module-causal.synthetic_dataset" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="causal.synthetic_dataset.generate_kuramoto">
+<span class="sig-prename descclassname"><span class="pre">causal.synthetic_dataset.</span></span><span class="sig-name descname"><span class="pre">generate_kuramoto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_sims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/synthetic_dataset/_generate_kuramoto.html#generate_kuramoto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.synthetic_dataset.generate_kuramoto" title="Link to this definition"></a></dt>
+<dd><p>Generate Kuramoto simulations dataset.
+The final length of each simulation trajectory will be ‘length // sample_freq’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_sims</strong> (<em>int</em>) – Number of simulations to generate.</p></li>
+<li><p><strong>n_atoms</strong> (<em>int</em>) – Number of atoms (i.e., time-series) in the simulation.</p></li>
+<li><p><strong>length</strong> (<em>int</em>) – Length of each simulation trajectory.</p></li>
+<li><p><strong>sample_freq</strong> (<em>int</em>) – Sampling frequency of the trajectory.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>feats</strong> (<em>np.ndarray</em>) – Simulated time-series of shape (n_sims, n_atoms, length // sample_freq, 4).
+4 indicates the four features: phase difference, trajectory, absolute phase, and intrinsic frequency.</p></li>
+<li><p><strong>edges</strong> (<em>np.ndarray</em>) – Causal edges (binary) of shape (n_sims, n_atoms, n_atoms).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="causal.synthetic_dataset.generate_springs">
+<span class="sig-prename descclassname"><span class="pre">causal.synthetic_dataset.</span></span><span class="sig-name descname"><span class="pre">generate_springs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_sims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_balls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/synthetic_dataset/_generate_springs.html#generate_springs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.synthetic_dataset.generate_springs" title="Link to this definition"></a></dt>
+<dd><p>Generate Springs simulations dataset.
+The final length of each simulation trajectory will be ‘length // sample_freq’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_sims</strong> (<em>int</em>) – Number of simulations to generate.</p></li>
+<li><p><strong>n_balls</strong> (<em>int</em>) – Number of balls (i.e., time-series) in the simulation.</p></li>
+<li><p><strong>length</strong> (<em>int</em>) – Lnegth of each simulation trajectory.</p></li>
+<li><p><strong>sample_freq</strong> (<em>int</em>) – Sampling frequency of the simulation trajectory.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>feats</strong> (<em>np.ndarray</em>) – Array of shape (n_sims, n_balls, length // sample_freq, 4).
+4 indicates the four features: location and velocity in x and y dimensions.</p></li>
+<li><p><strong>edges</strong> (<em>np.ndarray</em>) – Causal edges (binary) of shape (n_sims, n_balls, n_balls).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="causal.synthetic_dataset.generate_thp">
+<span class="sig-prename descclassname"><span class="pre">causal.synthetic_dataset.</span></span><span class="sig-name descname"><span class="pre">generate_thp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_devices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_events</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_sparsity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_sparsity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/causal/synthetic_dataset/_generate_thp.html#generate_thp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#causal.synthetic_dataset.generate_thp" title="Link to this definition"></a></dt>
+<dd><p>Generate synthetic Topological Hawkes Process (THP) simulations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_devices</strong> (<em>int</em>) – Number of devices in the simulation.</p></li>
+<li><p><strong>n_events</strong> (<em>int</em>) – Number of events in the simulation.</p></li>
+<li><p><strong>device_sparsity</strong> (<em>float</em>) – Sparsity of the device topology, between 0 and 1.</p></li>
+<li><p><strong>event_sparsity</strong> (<em>float</em>) – Sparsity of the event topology, between 0 and 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>device_edges</strong> (<em>np.ndarray</em>) – Array of device edges representing the device topology.</p></li>
+<li><p><strong>event_edges</strong> (<em>np.ndarray</em>) – Array of event edges representing the event topology.</p></li>
+<li><p><strong>x</strong> (<em>pd.DataFrame</em>) – DataFrame containing the simulated events.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
