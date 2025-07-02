@@ -7,22 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    strategy:
-      matrix:
-        python-version: [ '3.12' ]
     steps:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
-      # with:
-      #   docs-folder: docs/
-    - name: Post-process HTML
-      run: |
-        cd docs
-        make html
-        touch _build/html/.nojekyll
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
