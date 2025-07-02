@@ -16,7 +16,7 @@ jobs:
         persist-credentials: false
     - name: Pre Build HTML
       run: |
-        pip install --upgrade pip
+        /usr/local/bin/python -m pip install --upgrade pip
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
     - name: Upload artifacts
